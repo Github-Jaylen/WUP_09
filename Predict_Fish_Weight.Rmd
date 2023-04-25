@@ -56,6 +56,11 @@ subsets(regsubsets.out,statistic="adjr2",legend="topright",main="Adjusted R^2")
 ```
 
 ### Best Two regressor model
+
+```{r}
+best.model <- lm(Weight~Height+Width,data=Perch)
+summary(best.model)
+```
 The best two regressor model defined by the chart above is the model that is H - W.
 
 ## Pike
