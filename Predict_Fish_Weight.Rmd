@@ -110,10 +110,11 @@ Pike_best_model <- lm(Weight~.,data=Pike)
 Pike_best_2_R_model <- lm(Weight~Length1 + Length3,data=Pike)
 anova(Pike_best_model, Pike_best_2_R_model)
 ```
-
-
+Anova shows that the value is .0 and is comparing both models, the P value is lower than 0.5 and we can conclude it is significant below the .05 level.
 
 ## Roach
+
+
 
 ### Best Models
 
