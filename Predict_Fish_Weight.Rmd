@@ -63,6 +63,15 @@ summary(best.model)
 ```
 The best two regressor model defined by the chart above is the model that is H - W.
 
+
+```{r}
+best.Perch_model <- lm(Weight~Height+Width,data=Perch)
+five_elementPerch_model <- lm(Weight~.,data=Perch)
+anova(best.Perch_model, five_elementPerch_model)
+```
+
+This analysis of variance represents how the Two element model is most likely to be significant.  That is why there is little difference when ocmparing it to the fiive element model.  
+
 ## Pike
 
 ### Best Models
