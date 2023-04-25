@@ -29,11 +29,11 @@ Fish <-read.csv(file="Fish.csv",header=TRUE)
 ## Perch
 
 
+
 ```{r}
 Perch <- filter(Fish, Species=="Perch" )
 Perch <- select(Perch, -(Species))
 ```
-
 
 
 
@@ -114,10 +114,49 @@ Anova shows that the value is .0 and is comparing both models, the P value is lo
 
 ## Roach
 
-
+```{r}
+Roach <- filter(Fish, Species=="Roach" )
+Roach <- select(Roach, -(Species))
+```
 
 ### Best Models
 
+```{r}
+library(leaps)
+regsubsets.out <-
+    regsubsets(Weight ~ .,
+               data = Roach,
+               nbest = 1,       # 1 best model for each number of predictors
+               nvmax = NULL,    # NULL for no limit on number of variables
+               force.in = NULL, force.out = NULL,
+               method = "exhaustive")
+
+summary.out <- summary(regsubsets.out)
+as.data.frame(summary.out$outmat)
+library(car)
+subsets(regsubsets.out,statistic="adjr2",legend="topright",main="Adjusted R^2")
+```
+
 ### Best Two regressor model
 
+```{r}
+Roach.best.model <- lm(Weight~Length3+Width,data=Roach)
+summary(Roach.best.model)
+```
+
+```{r}
+Roach.best.model <- lm(Weight~Length3+Width,data=Roach)
+five_elementRoach_model <- lm(Weight~.,data=Roach)
+anova(Roach.best.model, five_elementRoach_model)
+```
+
+Comparing the best Roach model with the Five Element roach model, the comparision reuslts in a p value of .9 the RSS in the 5 element model is slightly smaller but not of a significant difference,  Anova says there is no statistical difference between them. 
+
+
 ## Final Summary Statements
+
+
+
+
+
+
